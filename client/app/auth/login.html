@@ -30,7 +30,7 @@
           <label>
             <input ng-focus="loginError = signupError = '';" type="password" name="passwordConfirm" ng-model="newPassword" placeholder="confirm password" my-enter="signup(newPassword)" ng-minlength="8" />
             <div class="field-error">
-              <span ng-show="passMismatch && !loginForm.passwordConfirm.$error.minlength">Passwords did not match!</span>
+              <span ng-show="passMismatch && !loginForm.passwordConfirm.$error.minlength && !newPassword.length">Passwords did not match!</span>
               <span ng-show="loginForm.passwordConfirm.$error.minlength">Too short!</span>
             </div>
           </label>
