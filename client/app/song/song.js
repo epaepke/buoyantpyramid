@@ -118,6 +118,7 @@ angular.module('jam.song', [])
   $scope.pinComment = function () {
     $scope.commentTime = $scope.audio.currentTime / $scope.song.duration;
     $scope.pinningComment = true;
+    $scope.selectedComment = [{}];
   };
 
   var renderComments = function() {
