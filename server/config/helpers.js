@@ -31,7 +31,7 @@ var verifyToken = function (req, res, next) {
       tokenUser = jwt.decode(token, JWT_SECRET);
       
       // check against database
-      if (tokenUser.id && tokenUser.email && tokenUser.password) {
+      if (tokenUser.id && tokenUser.email) {
         User.findOne({
           where: {id: tokenUser.id, email: tokenUser.email},
           attributes: { exclude: ['password'] }

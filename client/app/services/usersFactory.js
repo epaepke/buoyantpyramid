@@ -65,6 +65,7 @@ angular.module('jam.usersFactory', [])
     })
     .then(function(res) {
       _.extend(userData, res.data.user);
+      win.localStorage.setItem('com.jam', res.data.token);
       return res;
     })
     .catch(console.error);

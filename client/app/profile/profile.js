@@ -47,7 +47,6 @@ function ($scope, loc, win, to, Users, Up, UploadFactory) {
   $scope.updateProfile = function () {
     Users.updateProfile($scope.user)
     .then(function (res) {
-      console.log('Profile updated', res.data.user);
       $scope.user = res.data.user;
     })
     .catch(function (error) {
