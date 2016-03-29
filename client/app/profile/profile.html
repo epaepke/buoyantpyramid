@@ -32,10 +32,10 @@
         <fieldset>
           <legend>info</legend>
           <label>name
-            <input type='text' ng-model='user.displayName' placeholder='Name' />
+            <input type='text' ng-model='user.displayName' placeholder='Name' my-enter="updateProfile()" />
           </label>
           <label>email
-            <input type='text' ng-model='user.email' placeholder='Email' />
+            <input type='text' ng-model='user.email' placeholder='Email' my-enter="updateProfile()" />
           </label>
           <button type='submit' ng-click='updateProfile();'>Update</button>
         </fieldset>
