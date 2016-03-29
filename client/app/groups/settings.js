@@ -4,7 +4,6 @@ angular.module('jam.groupSettings', [])
   $scope.user = {};
   $scope.group = {};
   $scope.sendingInvite = false;
-  $scope.inviteButtonText = "Send Invite";
 
   Users.getUserData()
   .then(function (user) {
@@ -24,7 +23,6 @@ angular.module('jam.groupSettings', [])
 
   $scope.sendInvite = function() {
     $scope.sendingInvite = true;
-    $scope.inviteButtonText = "Sending";
 
     Groups.sendInvite($scope.group, $scope.invite)
     .then(function(res) {
@@ -33,7 +31,6 @@ angular.module('jam.groupSettings', [])
       Groups.getGroupsData($scope.user, true)
       .then(function() {
         $scope.sendingInvite = false;
-        $scope.inviteButtonText = "Send Invite";
       })
       .catch(console.error);
     })

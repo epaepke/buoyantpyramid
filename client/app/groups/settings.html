@@ -34,7 +34,7 @@
           </label>
           <div class="form-buttons">
             <button ng-click="sendInvite()" ng-disabled="inviteForm.$invalid || sendingInvite">
-              {{inviteButtonText}}
+              {{ sendingInvite ? 'Sent' : 'Send Invite' }}
             </button>
           </div>
         </fieldset>
