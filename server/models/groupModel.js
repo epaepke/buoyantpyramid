@@ -50,6 +50,12 @@ var getUsers = function(groupId) {
   });
 };
 
+var getUserGroup = function(userId, groupId) {
+  return UserGroups.findOne({
+    where: {userId: userId, groupId: groupId}
+  });
+};
+
 var removeUser = function (groupId, userId) {
   return UserGroups.findOne({where: {groupId: groupId, userId: userId}})
   .then(function (userGroup) {
@@ -115,6 +121,7 @@ module.exports = {
   addUser: addUser,
   createGroup: createGroup,
   getGroup: getGroup,
+  getUserGroup: getUserGroup,
   getUsers: getUsers,
   removeUser: removeUser,
   deleteGroup: deleteGroup,
