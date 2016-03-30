@@ -1,6 +1,6 @@
 angular.module('jam.groupSettings', [])
 
-.controller('SettingsController', ['$scope', '$timeout', 'Upload', 'Users', 'Groups', 'UploadFactory', function($scope, to, Up, Users, Groups, UploadFactory) {
+.controller('SettingsController', ['$scope', '$timeout', 'Upload', 'Users', 'Groups', 'UploadFactory', 'Songs', function($scope, to, Up, Users, Groups, UploadFactory, Songs) {
   $scope.user = {};
   $scope.group = {};
   $scope.sendingInvite = false;
@@ -24,18 +24,19 @@ angular.module('jam.groupSettings', [])
 
   $scope.sendInvite = function() {
     $scope.sendingInvite = true;
-
-    Groups.sendInvite($scope.group, $scope.invite)
-    .then(function(res) {
-      $scope.invite = "";
-      $scope.inviteForm.$setPristine();
-      Groups.getGroupsData($scope.user, true)
-      .then(function() {
-        $scope.sendingInvite = false;
+    if ($scope.user.email !== $scope.invite) {
+      Groups.sendInvite($scope.group, $scope.invite)
+      .then(function(res) {
+        $scope.invite = "";
+        $scope.inviteForm.$setPristine();
+        Groups.getGroupsData($scope.user, true)
+        .then(function() {
+          $scope.sendingInvite = false;
+        })
+        .catch(console.error);
       })
       .catch(console.error);
-    })
-    .catch(console.error);
+    }
   };
 
   $scope.updateGroupProfile = function() {
