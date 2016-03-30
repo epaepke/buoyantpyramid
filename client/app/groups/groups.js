@@ -46,9 +46,9 @@ angular.module('jam.groups', [])
     Groups.updateUserRole(group.id, $scope.user.id, 'member')
     .then(function() {
       group.userGroups.role = 'member';
-      _.each(group.userGroups, function(user) {
-        if ($scope.user.id === user.userId) {
-          user.role = "member";
+      _.each(group.users, function(user) {
+        if ($scope.user.id === user.id) {
+          user.userGroups.role = "member";
         }
       });
       $scope.data.groups.push(group);
