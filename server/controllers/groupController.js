@@ -104,25 +104,29 @@ var sendInvite = function(req, res, next) {
   var email = req.body.email;
   var groupId = req.params.id;
 
-  Group.getGroup(groupId)
-  .then(function (group) {
-    UserModel.getUser({email: email})
-    .then(function (user) {
-      if (user) {
-        Group.addUser(group.id, user.id, 'pending')
-        .then(function(user) {
-          res.json(user);
-        });
-      } else {
-        Group.sendEmailInvite(group, email)
-        .then(function(value) {
-          res.json(value);
-        });
-      }
-    });
+  UserModel.getUser({email: email})
+  .then(function (user) {
+    if (user) {
+      return Group.getUserGroup(user.id, groupId)
+      .then(function (userGroup) {
+        if (userGroup) {
+          res.status(400).json('User is already a member');
+        } else {
+          Group.addUser(groupId, user.id, 'pending')
+          .then(function (user) {
+            res.json(user);
+          });
+        }
+      });
+    } else {
+      return Group.sendEmailInvite(groupId, email)
+      .then(function (result) {
+        res.json(result);
+      });
+    }
   })
   .catch(function (error) {
-    next(error);
+    res.json(error);
   });
 };
 
