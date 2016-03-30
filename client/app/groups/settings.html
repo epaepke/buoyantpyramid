@@ -37,6 +37,9 @@
               {{ sendingInvite ? 'Sent' : 'Send Invite' }}
             </button>
           </div>
+          <div class="field-error">
+            <span ng-show="inviteError">{{inviteError}}</span>
+          </div>
         </fieldset>
       </form>
       <!-- Code for crop file uploader -->
