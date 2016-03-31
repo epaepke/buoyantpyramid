@@ -2,7 +2,7 @@
 <div class="groups">
   <div class="page-content">
     <div class="create-group">
-      <button ng-click="toggleCreateModal()">Create New Group</button>
+      <button ng-click="toggleCreateModal()" class="create-group-button">Create New Group</button>
       <!-- Create group modal -->
       <modal-dialog show="createModalShown">
         <form name="createGroupForm"> 
@@ -51,29 +51,31 @@
     </div>
 
     <!-- Current group -->
-    <div class="group">{{ user.currentGroup.name }}</div> 
+    <!-- <div class="group">{{ user.currentGroup.name }}</div>  -->
           
-      <div class="group-members">
-      <div class="current-group-banner hide-mobile"> {{user.currentGroup.name}} </div>
-        <div ng-repeat="member in data.members | orderBy: 'userGroups.role' track by $index" ng-click="memberInfo(member, $index)">
-          <div class="group-member-container">
-            <div ng-class="'group-member {{member.userGroups.role}}'">
-              <img src={{member.avatarURL}} class="group-avatar-img">
-            </div>
-            <div class="group-member-text"> {{ member.displayName }} </div>
+    <div class="group-members">
+      <div class="group current">
+        {{user.currentGroup.name}}
+      </div>
+      <div ng-repeat="member in data.members | orderBy: 'userGroups.role' track by $index" ng-click="memberInfo(member, $index)">
+        <div class="group-member-container">
+          <div ng-class="'group-member {{member.userGroups.role}}'">
+            <img src={{member.avatarURL}} class="group-avatar-img">
           </div>
+          <div class="group-member-text"> {{ member.displayName }} </div>
         </div>
-        <a href="/#/group/settings" ng-show="user.isAdmin">
-          <i class="invite-icon fa fa-cog fa-2x hide-mobile"></i>
-        </a>
       </div>
+      <a href="/#/group/settings" ng-show="user.isAdmin">
+        <i class="invite-icon fa fa-cog fa-2x hide-mobile"></i>
+      </a>
+    </div>
 
-      <!-- Admin controls -->
-      <div class="group-members cog">
-        <a href="/#/group/settings" ng-show="user.isAdmin">
-          <i class="invite-icon fa fa-cog fa-2x"></i>
-        </a>
-      </div>
+    <!-- Admin controls -->
+    <div class="group-members cog">
+      <a href="/#/group/settings" ng-show="user.isAdmin">
+        <i class="invite-icon fa fa-cog fa-2x"></i>
+      </a>
+    </div>
 
 
 
